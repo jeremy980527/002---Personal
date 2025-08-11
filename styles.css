@@ -1,0 +1,610 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: block;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.btn-preview, .btn-save {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-preview:hover, .btn-save:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.avatar-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+.btn-change {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.btn-change:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.name-section {
+    margin-top: 20px;
+}
+
+.name-section label {
+    display: block;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.name-section input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.websites-section {
+    margin-top: 30px;
+}
+
+.website-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.website-item label {
+    display: block;
+    font-size: 12px;
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.website-item input {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+
+.website-item input:focus {
+    outline: none;
+    border-bottom-color: #4CAF50;
+}
+
+.website-item input::placeholder {
+    color: #666;
+}
+
+.website-item:last-of-type input:last-child {
+    margin-bottom: 0;
+}
+
+.btn-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.2);
+    border: none;
+    color: #ff6b6b;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.plus-icon {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+/* 預覽頁面樣式 */
+.preview-content {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.preview-avatar-container {
+    margin-bottom: 20px;
+}
+
+.preview-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.preview-name {
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.preview-websites {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.preview-website-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.preview-website-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.preview-website-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e0f2fe, #81c784);
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.preview-website-text {
+    flex: 1;
+    text-align: left;
+}
+
+.preview-website-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.preview-website-url {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* 成功訊息 */
+.success-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.success-message.show {
+    display: flex;
+}
+
+.success-content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+}
+
+.success-icon {
+    font-size: 48px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.success-content p {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.btn-view-website {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-view-website:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+/* 個人網站頁面樣式 */
+.personal-site-content {
+    text-align: center;
+    padding-top: 20px;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-avatar-container {
+    margin-bottom: 30px;
+}
+
+.personal-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.personal-avatar:hover {
+    transform: scale(1.05);
+}
+
+.personal-name {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.personal-subtitle {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+.personal-websites {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.personal-website-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.personal-website-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.personal-website-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin-right: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+
+.personal-website-text {
+    flex: 1;
+    text-align: left;
+}
+
+.personal-website-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.personal-website-url {
+    font-size: 14px;
+    color: #bbb;
+    opacity: 0.8;
+}
+
+.personal-footer {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.personal-footer p {
+    color: #666;
+    font-size: 14px;
+}
+
+.btn-share {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-share:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* 分享彈窗樣式 */
+.share-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.share-modal.show {
+    display: flex;
+}
+
+.share-content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    max-width: 400px;
+    width: 90%;
+}
+
+.share-content h3 {
+    color: white;
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.share-url-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.share-url-container input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-copy, .btn-qr, .btn-close-share {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-copy {
+    white-space: nowrap;
+}
+
+.btn-copy:hover, .btn-qr:hover, .btn-close-share:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.share-options {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* 登入頁面樣式 */
+.login-content {
+    text-align: center;
+    padding-top: 20%;
+}
+
+.login-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form label {
+    font-size: 14px;
+    color: #ccc;
+    text-align: left;
+}
+
+.login-form input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border: none;
+    color: white;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #45a049, #4CAF50);
+    transform: translateY(-2px);
+}
+
+.login-error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* 響應式設計 */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .preview-avatar {
+        width: 120px;
+        height: 120px;
+    }
+}

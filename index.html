@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人資訊網站編輯器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 登入頁面 -->
+    <div id="loginPage" class="page active">
+        <div class="container">
+            <div class="login-content">
+                <h2>登入</h2>
+                <div class="login-form">
+                    <label for="usernameInput">帳號</label>
+                    <input type="text" id="usernameInput" placeholder="輸入帳號">
+                    <label for="passwordInput">密碼</label>
+                    <input type="password" id="passwordInput" placeholder="輸入密碼">
+                    <button id="loginBtn" class="btn-login">登入</button>
+                    <p id="loginError" class="login-error" style="display: none;">帳號或密碼錯誤</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 編輯頁面 -->
+    <div id="editPage" class="page">
+        <div class="container">
+            <header class="header">
+                <button id="previewBtn" class="btn-preview">預覽網站</button>
+            </header>
+
+            <div class="profile-section">
+                <div class="avatar-container">
+                    <img id="avatarImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23e0f2fe'/%3E%3Cpath d='M30 90 Q60 60 90 90' fill='%2381c784'/%3E%3Cpath d='M20 70 Q40 50 60 70 Q80 50 100 70' fill='%2366bb6a'/%3E%3Ccircle cx='40' cy='40' r='8' fill='white'/%3E%3C/svg%3E" alt="大頭照" class="avatar">
+                    <button id="changeAvatarBtn" class="btn-change">點擊更換</button>
+                </div>
+
+                <div class="name-section">
+                    <label for="nameInput">姓名</label>
+                    <input type="text" id="nameInput" placeholder="輸入姓名" value="黃曉明">
+                </div>
+            </div>
+
+            <div class="websites-section">
+                <div class="website-item">
+                    <label>網站1</label>
+                    <input type="url" placeholder="https://www.youtube.com/" value="https://www.youtube.com/">
+                    <label>網站名稱</label>
+                    <input type="text" placeholder="我的個人YouTube帳號" value="我的個人YouTube帳號">
+                </div>
+
+                <div id="additionalWebsites">
+                    <!-- 額外的網站項目會動態添加到這裡 -->
+                </div>
+
+                <button id="addWebsiteBtn" class="btn-add">
+                    <span class="plus-icon">+</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 預覽頁面 -->
+    <div id="previewPage" class="page">
+        <div class="container">
+            <header class="header">
+                <button id="backBtn" class="btn-back">← 返回編輯</button>
+                <button id="saveBtn" class="btn-save">儲存使用</button>
+            </header>
+
+            <div class="preview-content">
+                <div class="preview-avatar-container">
+                    <img id="previewAvatar" src="" alt="大頭照" class="preview-avatar">
+                </div>
+                <h1 id="previewName" class="preview-name">黃曉明</h1>
+                
+                <div id="previewWebsites" class="preview-websites">
+                    <!-- 預覽的網站連結會顯示在這裡 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功訊息 -->
+    <div id="successMessage" class="success-message">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            <p>個人資訊網站已成功更新！</p>
+            <button id="viewWebsiteBtn" class="btn-view-website">前往個人網站</button>
+        </div>
+    </div>
+
+    <!-- 個人網站頁面 -->
+    <div id="personalWebsite" class="page">
+        <div class="container">
+            <header class="header" id="personalWebsiteHeader">
+                <button id="backToEditBtn" class="btn-back">← 返回編輯</button>
+                <button id="shareBtn" class="btn-share">分享網站</button>
+            </header>
+
+            <div class="personal-site-content">
+                <div class="personal-avatar-container">
+                    <img id="personalAvatar" src="" alt="大頭照" class="personal-avatar">
+                </div>
+                <h1 id="personalName" class="personal-name">黃曉明</h1>
+                <p class="personal-subtitle">歡迎來到我的個人網站</p>
+                
+                <div id="personalWebsites" class="personal-websites">
+                    <!-- 個人網站的連結會顯示在這裡 -->
+                </div>
+
+                <footer class="personal-footer">
+                    <p>© 2025 個人資訊網站</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分享彈窗 -->
+    <div id="shareModal" class="share-modal">
+        <div class="share-content">
+            <h3>分享你的個人網站</h3>
+            <div class="share-url-container">
+                <input type="text" id="shareUrl" readonly>
+                <button id="copyUrlBtn" class="btn-copy">複製</button>
+            </div>
+            <div class="share-options">
+                <button id="qrCodeBtn" class="btn-qr">生成QR碼</button>
+                <button id="closeShareBtn" class="btn-close-share">關閉</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
